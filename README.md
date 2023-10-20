@@ -1,38 +1,26 @@
-# Welcome to Remix!
+# Remix `<ErrorBoundary>` Example
 
-- [Remix Docs](https://remix.run/docs)
+This example shows how to setup a root `<ErrorBoundary>` that will automatically
+display any errors or error responses that is not caught by a lower route level
+`<ErrorBoundary>`
 
-## Development
+This example uses a `<DefaultErrorBoundary>` that will render a nice UI based on
+the error type, such as a thrown `Error` or a `Response` like `404 Not Found`.
 
-From your terminal:
+The *root* route has a separate `<Document>` and `<Layout>` component, along with
+the default `<App>` and `<ErrorBoundary>` exports. This is so errors will be rendered
+in the same layout as your application.
 
-```sh
-npm run dev
-```
+The `<Document>` component is responsible for the overall `<html>` structure. The
+`<Layout>` component is the `<body>` of your page.
 
-This starts your app in development mode, rebuilding assets on file changes.
+The `<App>` renders the `<Document>` along with the `<Outlet>`, whereas the
+`<ErrorBoundary>` renders the `<Document>` and the `<DefaultErrorBoundary>`.
 
-## Deployment
+Because of this structure, the error will be rendered inside the layout and have
+the same header and styling as the rest of the application.
 
-First, build your app for production:
+>NOTE: For thrown application errors, if you are in `development`, it will render
+the stacktrace. On production, the stacktrace will not be present.
 
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
+View on [⚡️ StackBlitz](https://stackblitz.com/github/kiliman/remix-root-errorboundary)
